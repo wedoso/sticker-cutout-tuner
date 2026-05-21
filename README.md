@@ -8,6 +8,12 @@ This project combines:
 - a local Flask UI in `web_app.py` for previewing, tuning, and saving results
 - optional manual paint/erase cleanup for tiny edge defects after automatic extraction
 
+The repository now includes one published sample pair for reference:
+
+- input: [`original/hug.png`](original/hug.png)
+- output: [`output/hug.png`](output/hug.png)
+- saved tuning example: [`sticker_params.example.json`](sticker_params.example.json)
+
 The repository is set up for open-source sharing: source images and generated outputs stay local, while the code, docs, and project metadata are ready to publish.
 
 ## Features
@@ -19,6 +25,26 @@ The repository is set up for open-source sharing: source images and generated ou
 - Manually patch small gaps with white brush, eraser, or area delete tools
 - Batch-render all stickers from the CLI or web UI
 - Keep local assets out of Git while preserving the expected folder layout
+- Ship one sample input/output pair so GitHub visitors can see the workflow immediately
+
+## Sample input/output
+
+<table>
+  <tr>
+    <th>Input sticker sheet</th>
+    <th>Rendered output</th>
+  </tr>
+  <tr>
+    <td><img src="original/hug.png" alt="Sample source sticker sheet" width="280"></td>
+    <td><img src="output/hug.png" alt="Sample transparent sticker output" width="280"></td>
+  </tr>
+</table>
+
+You can reproduce the sample render with the checked-in example params:
+
+```zsh
+python process_stickers.py --input original --output output --image hug.png --params-json sticker_params.example.json --use-saved
+```
 
 ## How it works
 
@@ -52,9 +78,11 @@ For more detail, see [`docs/algorithm-notes.md`](docs/algorithm-notes.md).
 ├── docs/
 │   └── algorithm-notes.md
 ├── original/
-│   └── README.md            # Put your source PNGs here
+│   ├── README.md
+│   └── hug.png              # Published sample source image
 ├── output/
-│   └── README.md            # Generated PNGs are written here
+│   ├── README.md
+│   └── hug.png              # Published sample rendered result
 ├── static/
 │   ├── app.js
 │   └── styles.css
@@ -84,7 +112,7 @@ pip install -r requirements.txt
 
 ### 2. Add source images
 
-Put your source sticker-sheet PNGs into `original/`.
+The repo already includes one sample source file at `original/hug.png` so you can inspect the workflow immediately. Add your own sticker-sheet PNGs into `original/` as needed.
 
 Expected input characteristics:
 
@@ -115,10 +143,22 @@ Render a single image:
 python process_stickers.py --input original --output output --image morning.png
 ```
 
+Render the published sample image using the published sample saved params:
+
+```zsh
+python process_stickers.py --input original --output output --image hug.png --params-json sticker_params.example.json --use-saved
+```
+
 Render using previously saved per-image settings:
 
 ```zsh
 python process_stickers.py --input original --output output --params-json sticker_params.json --use-saved
+```
+
+If you want to start from the checked-in example, copy it first:
+
+```zsh
+cp sticker_params.example.json sticker_params.json
 ```
 
 ## Web UI workflow
@@ -215,8 +255,8 @@ semantic-release version --noop
 
 ## Notes for publishing
 
-- The repository intentionally does **not** commit your local source PNGs or generated outputs.
-- The repository ships [`sticker_params.example.json`](sticker_params.example.json) as a format reference; the live `sticker_params.json` file is meant to stay local and is ignored by Git.
+- The repository intentionally keeps most source PNGs and generated outputs local, but it does publish one reference pair: [`original/hug.png`](original/hug.png) and [`output/hug.png`](output/hug.png).
+- The repository ships [`sticker_params.example.json`](sticker_params.example.json) as a concise sample for that published image; the live `sticker_params.json` file is meant to stay local and is ignored by Git.
 - If you want to ship sample assets later, make sure you have the rights to redistribute them.
 
 ## License

@@ -1,5 +1,7 @@
 original/*.png
+!original/hug.png
 output/*.png
+!output/hug.png
 .venv/
 .idea/
 .DS_Store
