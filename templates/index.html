@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sticker Cutout Tuner</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="image-rail">
+        <div class="rail-header">
+          <h1>Sticker Tuner</h1>
+          <span id="imageCount" class="muted"></span>
+        </div>
+        <div id="imageList" class="image-list"></div>
+      </aside>
+
+      <main class="preview-pane">
+        <div class="top-bar">
+          <div>
+            <div id="selectedName" class="selected-name">Loading</div>
+            <div id="statusText" class="status-text">Starting app</div>
+          </div>
+          <div class="top-controls">
+            <div class="zoom-controls" aria-label="Preview zoom">
+              <button id="zoomOut" type="button">Smaller</button>
+              <span id="zoomLabel">Fit</span>
+              <button id="zoomIn" type="button">Enlarge</button>
+              <button id="zoomFit" type="button">Fit</button>
+            </div>
+            <button id="topGoBack" type="button">Go Back</button>
+            <button id="topSaveImage" type="button" class="top-save">Save</button>
+            <div class="segmented" aria-label="Preview background">
+              <button type="button" data-bg="checker" class="active">Checker</button>
+              <button type="button" data-bg="dark">Dark</button>
+              <button type="button" data-bg="white">White</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="previewStage" class="preview-stage checker-bg">
+          <div id="paintStack" class="paint-stack">
+            <img id="previewImage" alt="Preview">
+            <canvas id="paintCanvas" aria-label="Manual brush layer"></canvas>
+            <div id="brushCursor" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <section class="reference-row">
+          <div class="reference-panel">
+            <div class="reference-title">Original</div>
+            <img id="originalImage" alt="Original">
+          </div>
+          <div class="reference-panel">
+            <div class="reference-title">Saved Output</div>
+            <img id="outputImage" alt="Saved output">
+          </div>
+        </section>
+      </main>
+
+      <aside class="control-pane">
+        <section class="quick-panel">
+          <div class="quick-title">Common Fixes</div>
+          <div class="preset-grid" id="presetButtons"></div>
+          <p class="quick-note">
+            Double bottom edge: use Fix Double Edge, then tune Outline, Old Edge Cleanup, Edge Roundness, and Shadow Strength.
+          </p>
+          <div id="quickControls" class="quick-controls"></div>
+          <section class="paint-panel">
+            <div class="paint-title">Manual Brush</div>
+            <p class="paint-note">Paint white to fill tiny gaps, or erase unwanted parts back to transparency.</p>
+            <div class="brush-tool-row" aria-label="Brush tool">
+              <button id="paintToggle" type="button">Paint White</button>
+              <button id="eraseToggle" type="button">Eraser</button>
+              <button id="areaDeleteToggle" type="button">Area Delete</button>
+            </div>
+            <div class="paint-size-row">
+              <label for="areaTolerance">Area Sensitivity</label>
+              <input id="areaTolerance" type="range" min="4" max="96" step="1" value="36">
+              <input id="areaToleranceNumber" type="number" min="4" max="96" step="1" value="36">
+            </div>
+            <div class="paint-size-row">
+              <label for="areaGrow">Area Grow</label>
+              <input id="areaGrow" type="range" min="0" max="16" step="1" value="3">
+              <input id="areaGrowNumber" type="number" min="0" max="16" step="1" value="3">
+            </div>
+            <div class="paint-size-row">
+              <label for="brushSize">Brush Size</label>
+              <input id="brushSize" type="range" min="2" max="80" step="1" value="18">
+              <input id="brushSizeNumber" type="number" min="2" max="80" step="1" value="18">
+            </div>
+            <div class="paint-actions">
+              <button id="undoPaint" type="button">Go Back</button>
+              <button id="clearPaint" type="button">Clear Paint</button>
+            </div>
+          </section>
+        </section>
+
+        <div class="action-grid">
+          <button id="saveImage" type="button" class="primary">Save Image</button>
+          <button id="saveParams" type="button">Save Params</button>
+          <button id="renderCurrent" type="button">Render All Current</button>
+          <button id="renderSaved" type="button">Render All Saved</button>
+          <button id="resetDefaults" type="button">Reset</button>
+          <button id="loadSaved" type="button">Load Saved</button>
+        </div>
+        <div id="controlGroups" class="control-groups"></div>
+      </aside>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+original/*.png
+output/*.png
+.venv/
+.idea/
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+build/
+dist/
+*.egg-info/
+sticker_params.json
