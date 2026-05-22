@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.1.1 (2026-05-22)
+
+### Bug Fixes
+
+- Update the correct output example image
+  ([`7a43c9e`](https://github.com/wedoso/sticker-cutout-tuner/commit/7a43c9e3bbe5a40e19f37dfa463c89021d35b290))
+
+
 ## v0.1.0 (2026-05-22)
 
 ### Chores
