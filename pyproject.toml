@@ -40,6 +40,7 @@ release = [
 sticker-cutout = "process_stickers:main"
 sticker-cutout-web = "web_app:main"
 
+
 [tool.setuptools]
 py-modules = ["process_stickers", "web_app"]
 
